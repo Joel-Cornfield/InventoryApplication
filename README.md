@@ -17,4 +17,4 @@ This is a supermarket inventory manager application built using **Express.js**. 
 - **Database:** PostgreSQL
 - **Hosting:** Render for hosting the application
 
-Live Preview[https://inventoryapplication-qu9f.onrender.com/]
+Live Preview -> [https://inventoryapplication-qu9f.onrender.com/]
