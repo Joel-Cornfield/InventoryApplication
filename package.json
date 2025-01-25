@@ -1,0 +1,30 @@
+{
+  "name": "inventoryapplication",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:setup": "node db/setup.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joel-Cornfield/InventoryApplication.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Joel-Cornfield/InventoryApplication/issues"
+  },
+  "homepage": "https://github.com/Joel-Cornfield/InventoryApplication#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "method-override": "^3.0.0",
+    "pg": "^8.13.1"
+  }
+}

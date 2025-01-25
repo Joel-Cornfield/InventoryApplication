@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    
+    <div class="container">
+        <div class="item-details">
+            <h1><%= item.name %></h1>
+            
+            <div class="item-image">
+                <!-- Apply the styles defined in CSS -->
+                <img src="<%= item.image_url %>" alt="<%= item.name %>" onerror="this.src='/images/placeholder-item.jpg';">
+            </div>
+            
+            <div class="item-info">
+                <p><strong>Category:</strong> <%= item.category_name %></p>
+                <p><strong>Description:</strong> <%= item.description || 'No description available' %></p>
+                <p><strong>Price:</strong> $<%= Number(item.price).toFixed(2) %></p>
+                <p><strong>Stock Quantity:</strong> <%= item.stock_quantity %></p>
+            </div>
+            
+            <div class="item-actions">
+                <a href="/items" class="btn btn-primary">Back to Items</a>
+                <a href="/items/<%= item.id %>/edit" class="btn btn-secondary">Edit Item</a>
+                <form 
+                    action="/items/<%= item.id %>?_method=DELETE" 
+                    method="POST" 
+                    style="display:inline;"
+                    onsubmit="return confirm('Are you sure you want to delete this item?');"
+                >
+                    <button type="submit" class="btn btn-danger">Delete Item</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>

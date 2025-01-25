@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    
+    <div class="container">
+        <h1>All Items</h1>
+        
+        <a href="/items/new" class="btn btn-secondary">Add New Item</a>
+        
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% items.forEach(item => { %>
+                    <tr>
+                        <td><%= item.name %></td>
+                        <td><%= item.category_name %></td>
+                        <td>
+                            <% if (item.price !== null && !isNaN(item.price)) { %>
+                                $<%= Number(item.price).toFixed(2) %>
+                            <% } else { %>
+                                N/A
+                            <% } %>
+                        </td>
+                        <td><%= item.stock_quantity %></td>
+                        <td>
+                            <a href="/items/<%= item.id %>" class="btn btn-primary">View</a>
+                            <a href="/items/<%= item.id %>/edit" class="btn btn-secondary">Edit</a>
+                            <form action="/items/<%= item.id %>?_method=DELETE" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+    <%- include('../partials/footer') %>
+</body>
+</html>

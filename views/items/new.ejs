@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    
+    <div class="container">
+        <h1>Add New Item</h1>
+        
+        <% if (locals.error) { %>
+            <div class="alert alert-danger">
+                <%= error %>
+            </div>
+        <% } %>
+        
+        <form action="/items" method="POST">
+            <div class="form-group">
+                <label for="name">Item Name:</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    class="form-control" 
+                    required
+                    value="<%= locals.formData && formData.name ? formData.name : '' %>"
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="category_id">Category:</label>
+                <select 
+                    id="category_id" 
+                    name="category_id" 
+                    class="form-control" 
+                    required
+                >
+                    <% categories.forEach(category => { %>
+                        <option 
+                            value="<%= category.id %>"
+                            <%= (locals.formData && formData.category_id == category.id) ? 'selected' : '' %>
+                        >
+                            <%= category.name %>
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea 
+                    id="description" 
+                    name="description" 
+                    class="form-control"
+                ><%= locals.formData && formData.description ? formData.description : '' %></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input 
+                    type="number" 
+                    id="price" 
+                    name="price" 
+                    class="form-control" 
+                    step="0.01" 
+                    required
+                    value="<%= locals.formData && formData.price ? formData.price : '' %>"
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="stock_quantity">Stock Quantity:</label>
+                <input 
+                    type="number" 
+                    id="stock_quantity" 
+                    name="stock_quantity" 
+                    class="form-control" 
+                    required
+                    value="<%= locals.formData && formData.stock_quantity ? formData.stock_quantity : '' %>"
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="image_url">Image URL (optional):</label>
+                <input 
+                    type="text" 
+                    id="image_url" 
+                    name="image_url" 
+                    class="form-control" 
+                    placeholder="Enter a URL for the item image or leave blank for default"
+                    value="<%= locals.formData && formData.image_url ? formData.image_url : '' %>"
+                >
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Add Item</button>
+        </form>
+    </div>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>
